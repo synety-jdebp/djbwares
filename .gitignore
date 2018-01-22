@@ -1,0 +1,9 @@
+*.tar.bz2
+build
+command
+config
+debian
+doc
+header
+library
+manual

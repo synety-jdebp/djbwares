@@ -1,0 +1,18 @@
+#!/bin/sh
+# (c) Copyright 2001,2002,2017 Jonathan de Boyne Pollard. "Moral" rights asserted.
+# For the copyright licence, see COPYING.
+for i do (
+	cd "$i"
+	test -d service && cd service
+	echo "$i" | sed -e 's/./*/g'
+	echo "$i"
+	echo "$i" | sed -e 's/./*/g'
+	echo
+	echo '+++ Configuration options:'
+	egrep '[A-Za-z0-9_]+=' run
+	( cd env 2>/dev/null && grep "^" /dev/null * )
+	echo
+	echo '+++ Apices of those parts of the namespace that will be served up:'
+	sed -ne '/^[Z.]/{s/^.//;s/:.*$//;s/\([^.]\)$/\1./;p;}' < root/data
+	echo
+); done
